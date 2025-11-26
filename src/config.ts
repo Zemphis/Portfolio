@@ -1,13 +1,13 @@
 export const siteConfig = {
   name: "Fardeen Rahman",
   title: "Bachelor of Computer Science",
+  image: "/images/profile.jpg",
   description: "Portfolio website of Fardeen Rahman",
   accentColor: "#1f39829b",
   social: {
     email: "fardeen.mm.rahman@gmail.com",
     linkedin: "https://linkedin.com/in/fardeen-rahman-9033a8307/",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/fardeenRahman",
+    github: "https://github.com/Zemphis",
   },
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
@@ -16,44 +16,27 @@ export const siteConfig = {
     {
       name: "Adelaide University Space Society Website",
       description:
-        "The official website for the Adelaide University Space Society, allowing people to sign up for a membership and view upcoming events.",
+        "The official website for the Adelaide University Space Society, allowing people to sign up for a membership and view upcoming events. Implemented a content management system for easy updates.",
       link: "https://www.auspacesociety.com.au/",
       skills: ["React", "Node.js", "Stripe", "Vercel"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "This Website!",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
-    {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "My personal portfolio website built using Astro and Tailwind CSS, showcasing my projects and experience in a clean and modern design.",
+      link: "https://github.com/Zemphis/Portfolio",
+      skills: ["Astro", "Tailwind CSS", "TypeScript", "Vercel"],
     },
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Australian Institute of Machine Learning",
+      title: "FPGA Research Intern",
+      dateRange: "Nov 2025 - Present",
       bullets: [
         "Led development of microservices architecture serving 1M+ users",
         "Reduced API response times by 40% through optimization",
         "Mentored team of 5 junior developers",
-      ],
-    },
-    {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
-      bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
       ],
     },
     {
@@ -69,23 +52,24 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "Adelaide University",
+      degree: "Bachelor of Computer Science",
+      dateRange: "2024 - 2027",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Currently studying second year.",
+        "Marketing manager/Developer for Adelaide University Space Society",
+        "Social Media Officer of Computer Science Club",
+        "Jane Street Estimathon Winner 2024",
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
+      school: "Glenunga International High School",
+      degree: "South Australian Certificate of Education (SACE)",
+      dateRange: "2018-2023",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "ATAR: 97.80",
+        "Student Leadership Team 2021-2023",
+        "Youth UN Ambassador 2022-2023",
       ],
     },
   ],
