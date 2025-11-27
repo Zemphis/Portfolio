@@ -3,14 +3,14 @@ export const siteConfig = {
   title: "Bachelor of Computer Science",
   image: "/images/profile.jpg",
   description: "Portfolio website of Fardeen Rahman",
-  accentColor: "#1f39829b",
+  accentColor: "#1f3982ff",
   social: {
     email: "fardeen.mm.rahman@gmail.com",
     linkedin: "https://linkedin.com/in/fardeen-rahman-9033a8307/",
     github: "https://github.com/Zemphis",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
+    "Hi, I'm Fardeen, a man with a passion for exploration, a chat with mates, and an avid story-lover (recommendations appreciated!). But the particular trait that got me into the mess of computer science was my stubborn, almost obsessive, desire to understand how things work. From tinkering with Minecraft Mods as a child, to sharpening my problem-solving skills through ARGs like Cicada 3301 and the Cipher Hunt. I have always loved a good challenge. Do you have one for me?",
   skills: ["Javascript", "React", "Node.js", "C++", "AWS", "Docker", "SQL", "FPGAs", "Verilog", "VHDL"],
   projects: [
     {
@@ -23,7 +23,7 @@ export const siteConfig = {
     {
       name: "This Website!",
       description:
-        "My personal portfolio website built using Astro and Tailwind CSS, showcasing my projects and experience in a clean and modern design.",
+        "My personal portfolio website built using Astro and Tailwind CSS, showcasing my projects and experience in a clean and modern design. Hosted on Vercel.",
       link: "https://github.com/Zemphis/Portfolio",
       skills: ["Astro", "Tailwind CSS", "TypeScript", "Vercel"],
     },
@@ -34,19 +34,19 @@ export const siteConfig = {
       title: "FPGA Research Intern",
       dateRange: "Nov 2025 - Present",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Post-quantum cryptography hardware acceleration on RISC-V platforms",
+        "Designed and implemented a dedicated cryptogrpahic hardware accelerator using Verilog/VHDL and LiteX to prototype and test.",
+        "Then implemented the accelerator into a RISC-V softcore CPU hardware and benchmarked the performance improvements.",
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      company: "Realty1Global",
+      title: "Fullstack Developer",
+      dateRange: "Aug 2025 - Dec 2025",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Created and maintained web applications for real estate clients using React and Next.js.",
+        "Improved profits by 15% by providing a end-to-end stripe payment solution for clients, without going through Airbnb and other third-party services.",
+        "Created a content management system for easy updates and created a database schema for property listings.",
       ],
     },
   ],

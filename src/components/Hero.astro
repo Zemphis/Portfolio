@@ -137,7 +137,7 @@ import { siteConfig } from "../config";
       <h2
         class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
       >
-        Hello! 👋
+        Yello! 👋
       </h2>
       <h1
         class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
@@ -215,36 +215,7 @@ import { siteConfig } from "../config";
         </a>
       )
     }
-    {
-      siteConfig.social?.twitter && (
-        <a
-          href={siteConfig.social.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Twitter"
-          class="transition-colors duration-300 hover:text-[var(--accent-color)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-            </>
-          </svg>
-        </a>
-      )
-    }
+
     {
       siteConfig.social?.github && (
         <a
@@ -273,6 +244,34 @@ import { siteConfig } from "../config";
           </svg>
         </a>
       )
+    }
+    {
+  
+      <a
+        href="/resume.pdf"
+        download="Fardeen_Rahman_Resume.pdf"
+        aria-label="Download resume"
+        class="transition-colors duration-300 hover:text-[var(--accent-color)]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 3v5h5" />
+          <path d="M12 11v6" />
+          <path d="M9 14l3 3 3-3" />
+        </svg>
+      </a>
     }
   </div>
 </div>
@@ -306,18 +305,44 @@ import { siteConfig } from "../config";
     animation-delay: 0.6s;
   }
 .avatar {
-  width: 240px;
-  height: 240px;
+  width: 120px;
+  height: 120px;
   border-radius: 9999px;
   object-fit: cover;
   object-position: center;
   display: block;
 }
 
+@media (min-width: 640px) {
+  .avatar {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 240px;
+    height: 240px;
+  }
+}
+
 .hero-avatar {
   flex-shrink: 0;
   margin-right: 2rem;
   transform: translateX(-40px);
+}
+
+@media (min-width: 640px) {
+  .hero-avatar {
+    margin-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-avatar {
+    margin-right: 2rem;
+  }
 }
 
 </style>
