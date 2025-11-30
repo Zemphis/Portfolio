@@ -27,6 +27,13 @@ export const siteConfig = {
       link: "https://github.com/Zemphis/Portfolio",
       skills: ["Astro", "Tailwind CSS", "TypeScript", "Vercel"],
     },
+    {
+      name: "Basys 2 VGA Controller",
+      description:
+        "Engineered and implemented a custom 640x480 VGA Controller and Pong entirely within the Basys 2 FPGA using only HDL.",
+      link: "https://github.com/Zemphis/Basys2",
+      skills: ["Verilog", "VHDL", "Finite State Machines", "UCF/XDC"],
+    },
   ],
   experience: [
     {
