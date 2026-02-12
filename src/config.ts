@@ -14,6 +14,13 @@ export const siteConfig = {
   skills: ["Javascript", "React", "Node.js", "C++", "AWS", "Docker", "SQL", "FPGAs", "Verilog", "VHDL"],
   projects: [
     {
+      name: "Bleed SMP Mod",
+      description:
+        "A mod made for the Bleed SMP from scratch, learning Mojang's new documentation post 1.21 as well as the refactoring on Fabric API. Handled player interactions, custom items, and custom blocks, as well as a custom GUI for block entities. Information on save states and player data is stored persistently to inform the mod of unique player interactions. Currently hosted on the Bleed SMP server.",
+      link: "https://github.com/Zemphis/BleedSMP",
+      skills: ["Java", "Gradle", "Fabric API", "Minecraft API"],
+    },
+    {
       name: "Adelaide University Space Society Website",
       description:
         "The official website for the Adelaide University Space Society, allowing people to sign up for a membership and view upcoming events. Implemented a content management system for easy updates.",
