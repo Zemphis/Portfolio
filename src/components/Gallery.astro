@@ -1,0 +1,86 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+const galleryItems = [
+  { id: 1, title: "CSC Starbrew Valley Pubcrawl", image: "/images/000018.JPG" },
+  { id: 2, title: "CSC Industry Night 2026", image: "/images/DSC01171.png" },
+  { id: 3, title: "AUSS Conspiracy Night 2026", image: "/images/DSCF0282.jpg" },
+  { id: 4, title: "SIG Brain Teaser Battle Winner", image: "/images/20260312_175707.jpg" },
+  { id: 5, title: "CSC Random Access Memories Pubcrawl", image: "/images/P1200436.jpg" },
+  { id: 6, title: "Trip to Sydney for IMC interview", image: "/images/bg.png" },
+];
+---
+
+<section id="gallery" class="overflow-hidden py-24 md:py-36">
+  <div class="mx-auto max-w-[1400px] px-5 sm:px-8 md:px-12">
+    <SectionHeading index="02" label="off the clock" title="All the things I find" serif=" special" note="some memories!" />
+  </div>
+
+  <div class="gallery-window">
+    <div class="carousel-track">
+      {[...galleryItems, ...galleryItems, ...galleryItems].map((item) => (
+        <figure class="carousel-item group relative shrink-0 overflow-hidden rounded-[24px] border border-paper/10 bg-ink-2">
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            class="h-full w-full object-cover grayscale-[40%] sepia-[20%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:sepia-0"
+          />
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+          <span class="absolute top-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-white/80">
+            ▶ Tape {String(item.id).padStart(2, "0")}
+          </span>
+          <figcaption class="absolute inset-x-0 bottom-0 p-5">
+            <p class="text-lg font-medium leading-tight tracking-[-0.02em] text-white">
+              {item.title}
+            </p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-window {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .carousel-track {
+    --carousel-gap: 1.25rem;
+    display: flex;
+    width: max-content;
+    gap: var(--carousel-gap);
+    animation: scroll 50s linear infinite;
+  }
+
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  .carousel-item {
+    width: clamp(16rem, 30vw, 24rem);
+    aspect-ratio: 4 / 5;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-33.333333% - var(--carousel-gap) / 3));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .carousel-item {
+      width: 70vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+      animation-play-state: paused;
+    }
+  }
+</style>

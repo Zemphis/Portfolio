@@ -1,58 +1,42 @@
 ---
 import { siteConfig } from "../config";
+import SectionHeading from "./SectionHeading.astro";
+
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
 {
   hasEducation && (
-    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Education
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+    <section id="education" class="px-5 py-24 sm:px-8 md:px-12 md:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <SectionHeading index="05" label="where I've studied" title="Education" serif=" so far" />
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {siteConfig.education.map((edu, index) => (
+            <article
+              data-reveal
+              style={`--reveal-delay: ${index * 120}ms`}
+              class="flex flex-col rounded-[32px] border border-paper/10 bg-ink-2 p-6 transition-colors duration-500 hover:border-accent/50 sm:p-8 md:p-10"
+            >
+              <div class="flex items-center justify-between font-mono text-xs uppercase tracking-[0.15em] text-muted">
+                <span class="text-accent">{edu.dateRange}</span>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <h3 class="mt-6 text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-4xl">
+                {edu.school}
+              </h3>
+              <p class="mt-2 font-serif text-xl italic text-paper/70">{edu.degree}</p>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                        <span class="text-sm sm:text-base text-gray-600">
-                          {achievement}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
+              <ul class="mt-8 space-y-3 border-t border-paper/10 pt-6">
+                {edu.achievements.map((achievement) => (
+                  <li class="flex gap-3 text-base leading-relaxed text-paper/65">
+                    <span class="mt-1 font-mono text-xs text-accent">✦</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </div>
     </section>

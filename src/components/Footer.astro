@@ -4,194 +4,99 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+const links = [
+  { href: "#about", label: "About", show: true },
+  { href: "#projects", label: "Works", show: hasProjects },
+  { href: "#experience", label: "Experience", show: hasExperience },
+  { href: "#education", label: "Education", show: hasEducation },
+].filter((link) => link.show);
+
+const socials = [
+  { label: "Email", href: siteConfig.social?.email && `mailto:${siteConfig.social.email}` },
+  { label: "LinkedIn", href: siteConfig.social?.linkedin },
+  { label: "GitHub", href: siteConfig.social?.github },
+].filter((social) => social.href);
 ---
 
-<footer class="relative bg-gray-50 border-t border-gray-200">
-  <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
-    <div
-      class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
-    >
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-gray-800">
-          {siteConfig.name}
-        </h3>
-        <p class="text-base text-gray-600">
-          {siteConfig.title}
-        </p>
-        <div class="flex gap-x-6">
-          <a
-            href={`mailto:${siteConfig.social.email}`}
-            aria-label="Email"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-6 w-6"
+<footer class="relative overflow-hidden border-t border-paper/10 bg-ink-2 px-5 pt-24 sm:px-8 md:px-12">
+  <div class="mx-auto max-w-[1400px]">
+    <!-- Call to action -->
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-12" data-reveal>
+      <div class="lg:col-span-8">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-muted">(06) — say hello</p>
+        <h2 class="mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-6xl md:text-7xl">
+          Got a challenge
+          <span class="font-serif font-normal italic text-accent"> for me?</span>
+        </h2>
+        {
+          siteConfig.social?.email && (
+            <a
+              href={`mailto:${siteConfig.social.email}`}
+              class="mt-10 inline-flex items-center gap-3 rounded-full bg-accent px-7 py-4 font-mono text-sm font-medium uppercase tracking-[0.15em] text-ink transition-transform duration-300 hover:-translate-y-0.5"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-              ></path>
-              <path d="M3 7l9 6l9 -6"></path>
-            </svg>
-          </a>
-          <a
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-6 w-6"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M8 11v5"></path><path d="M8 8v.01"></path><path d="M12 16v-5"
-              ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
-                d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
-              ></path></svg
-            >
-          </a>
-          
-          <a
-            href={siteConfig.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-6 w-6"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-              ></path></svg
-            >
-          </a>
-          <a
-            href="/resume.pdf"
-            download="Fardeen_Rahman_Resume.pdf"
-            aria-label="Download resume"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-6 w-6"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <path d="M14 3v5h5" />
-              <path d="M12 11v6" />
-              <path d="M9 14l3 3 3-3" />
-            </svg>
-          </a>
-        </div>
+              {siteConfig.social.email} ↗
+            </a>
+          )
+        }
       </div>
 
-      <div class="hidden md:block flex flex-col md:items-end gap-4">
-        <nav class="flex gap-x-8">
-          <a
-            href="#about"
-            class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-            >About</a
-          >
-          {
-            hasProjects && (
+      <div class="grid grid-cols-2 gap-8 font-mono text-xs uppercase tracking-[0.15em] lg:col-span-4">
+        <div>
+          <p class="mb-4 text-muted">Navigate</p>
+          <ul class="space-y-3">
+            {links.map((link) => (
+              <li>
+                <a href={link.href} class="transition-colors hover:text-accent">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="mb-4 text-muted">Elsewhere</p>
+          <ul class="space-y-3">
+            {socials.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  target={social.label === "Email" ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  class="transition-colors hover:text-accent"
+                >
+                  {social.label} ↗
+                </a>
+              </li>
+            ))}
+            <li>
               <a
-                href="#projects"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                href="/Fardeen Rahman Resume.pdf"
+                download="Fardeen Rahman Resume.pdf"
+                class="transition-colors hover:text-accent"
               >
-                Projects
+                Resume ↓
               </a>
-            )
-          }
-          {
-            hasExperience && (
-              <a
-                href="#experience"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Experience
-              </a>
-            )
-          }
-          {
-            hasEducation && (
-              <a
-                href="#education"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Education
-              </a>
-            )
-          }
-        </nav>
-        <p class="text-sm text-gray-500">
-          © {new Date().getFullYear()}
-          {siteConfig.name}. All rights reserved.
-        </p>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div
+      class="mt-20 flex flex-col gap-3 border-t border-paper/10 pt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <span>© {new Date().getFullYear()} {siteConfig.name}</span>
+      <span>{siteConfig.location} · <span data-clock>--:--:--</span></span>
+      <a href="#hero" class="transition-colors hover:text-accent">⏏ Rewind to top</a>
     </div>
   </div>
 
-  <!-- Decorative pattern -->
-  <div class="absolute inset-0 -z-10 overflow-hidden">
-    <svg
-      aria-hidden="true"
-      class="absolute bottom-0 left-0 w-full h-24 text-gray-100"
+  <!-- Giant VHS-style name -->
+  <p
+    class="pointer-events-none mt-6 -mb-[0.18em] select-none whitespace-nowrap text-center text-[15.5vw] font-semibold leading-none tracking-[-0.07em] text-paper/[0.06]"
+    aria-hidden="true"
+  >
+    {siteConfig.name.split(" ")[0]}<span class="font-serif font-normal italic tracking-[-0.03em]"
+      >{siteConfig.name.split(" ").slice(1).join(" ")}</span
     >
-      <pattern
-        id="footer-pattern"
-        x="0"
-        y="0"
-        width="100"
-        height="100"
-        patternUnits="userSpaceOnUse"
-      >
-        <path
-          d="M0 50 Q 25 40, 50 50 T 100 50"
-          stroke="currentColor"
-          stroke-width="0.5"
-          fill="none"
-          opacity="0.4"></path>
-      </pattern>
-      <rect width="100%" height="100%" fill="url(#footer-pattern)"></rect>
-    </svg>
-  </div>
+  </p>
 </footer>

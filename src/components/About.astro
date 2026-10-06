@@ -1,33 +1,63 @@
 ---
 import { siteConfig } from "../config";
+import SectionHeading from "./SectionHeading.astro";
+
+const firstName = siteConfig.name.split(" ")[0];
+
+// Lead with the first sentence, VHS-style, then the rest in a quieter tone
+const [lead, ...restSentences] = siteConfig.aboutMe.split(/(?<=[.!?])\s+/);
+const rest = restSentences.join(" ");
 ---
 
-<section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
-        >
-          About Me
-        </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
+<section id="about" class="px-5 py-24 sm:px-8 md:px-12 md:py-36">
+  <div class="mx-auto max-w-[1400px]">
+    <SectionHeading index="01" label="about me" title="A little about" serif={` myself`} note="what's up!" />
+
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4" data-reveal>
+        <div class="rounded-[28px] border border-paper/10 bg-ink-2 p-6 sm:p-8">
+          <dl class="space-y-5 font-mono text-xs uppercase tracking-[0.15em]">
+            <div class="flex justify-between gap-4 border-b border-paper/10 pb-4">
+              <dt class="text-muted">Studying</dt>
+              <dd class="text-right">{siteConfig.title}</dd>
+            </div>
+            {
+              siteConfig.location && (
+                <div class="flex justify-between gap-4 border-b border-paper/10 pb-4">
+                  <dt class="text-muted">Based in</dt>
+                  <dd class="text-right">{siteConfig.location}</dd>
+                </div>
+              )
+            }
+            <div class="flex justify-between gap-4">
+              <dt class="text-muted">Local time</dt>
+              <dd class="text-right tabular-nums" data-clock>--:--:--</dd>
+            </div>
+          </dl>
         </div>
       </div>
 
-      <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
+      <div class="lg:col-span-8">
+        <p
+          class="text-3xl font-medium leading-[1.1] tracking-[-0.035em] sm:text-4xl md:text-5xl"
+          data-reveal
+        >
+          {lead}
+        </p>
+        <p
+          class="mt-8 max-w-3xl text-lg leading-relaxed text-paper/60 sm:text-xl"
+          data-reveal
+          style="--reveal-delay: 150ms"
+        >
+          {rest}
         </p>
 
-        <div class="pt-4">
-          <div class="flex flex-wrap gap-3">
+        <div class="mt-12" data-reveal style="--reveal-delay: 250ms">
+          <p class="mb-4 font-hand text-2xl text-accent-soft">things I work with ↓</p>
+          <div class="flex flex-wrap gap-2.5">
             {
               siteConfig.skills.map((skill) => (
-                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                <span class="rounded-full border border-paper/15 px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-paper/80 transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-ink">
                   {skill}
                 </span>
               ))

@@ -4,75 +4,113 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+const links = [
+  { href: "#about", label: "About", show: true },
+  { href: "#projects", label: "Works", show: hasProjects },
+  { href: "#experience", label: "Experience", show: hasExperience },
+  { href: "#education", label: "Education", show: hasEducation },
+].filter((link) => link.show);
+
+const initials = siteConfig.name
+  .split(" ")
+  .map((part) => part[0])
+  .join("");
 ---
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 border-b border-transparent text-white mix-blend-difference transition-[background-color,backdrop-filter,border-color] duration-300"
 >
-  <nav class="max-w-7xl mx-auto px-8 py-4">
-    <ul class="flex items-center gap-8 justify-center">
-      <li>
-        <a
-          href="#about"
-          class="text-gray-700 hover:text-black transition-colors font-medium"
-        >
-          About
-        </a>
-      </li>
+  <nav
+    class="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8 md:px-12"
+  >
+    <a href="#hero" class="font-serif text-3xl italic leading-none" aria-label="Back to top">
+      {initials}<span class="align-super text-sm not-italic">©</span>
+    </a>
+
+    <ul class="hidden items-center gap-8 font-mono text-xs uppercase tracking-[0.18em] md:flex">
       {
-        hasProjects && (
+        links.map((link) => (
           <li>
-            <a
-              href="#projects"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Projects
+            <a href={link.href} class="group relative py-1">
+              {link.label}
+              <span class="nav-underline absolute -bottom-0.5 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
             </a>
           </li>
-        )
-      }
-      {
-        hasExperience && (
-          <li>
-            <a
-              href="#experience"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Experience
-            </a>
-          </li>
-        )
-      }
-      {
-        hasEducation && (
-          <li>
-            <a
-              href="#education"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Education
-            </a>
-          </li>
-        )
+        ))
       }
     </ul>
+
+    <div class="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.18em]">
+      <span><span class="hidden sm:inline">ADL&nbsp;</span><span data-clock>--:--:--</span></span>
+      <button
+        id="theme-toggle"
+        type="button"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-current/30 transition-transform duration-300 hover:rotate-12"
+        aria-label="Toggle light and dark mode"
+      >
+        <!-- Tabler sun: shown in dark mode -->
+        <svg class="theme-icon-sun h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+          <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+        </svg>
+        <!-- Tabler moon: shown in light mode -->
+        <svg class="theme-icon-moon h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>
 
 <script>
-  window.addEventListener("scroll", () => {
-    const header = document.getElementById("header");
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-white/80", "backdrop-blur-sm");
-    } else {
-      header?.classList.remove("bg-white/80", "backdrop-blur-sm");
-    }
+  // Swap the blend-mode header for a frosted bar once we leave the top of the page
+  const header = document.getElementById("header");
+  const update = () => header?.classList.toggle("is-scrolled", window.scrollY > 40);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+
+  const toggle = document.getElementById("theme-toggle");
+  const syncToggle = () => {
+    const isLight = document.documentElement.dataset.theme === "light";
+    toggle?.setAttribute("aria-pressed", String(isLight));
+    toggle?.setAttribute("title", isLight ? "Switch to dark mode" : "Switch to light mode");
+  };
+  syncToggle();
+  toggle?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", next === "light" ? "#f7f9fd" : "#0f0f0f");
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    syncToggle();
   });
 </script>
 
 <style>
-  html {
-    scroll-behavior: smooth;
+  #header.is-scrolled {
+    mix-blend-mode: normal;
+    color: var(--color-paper);
+    background-color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    border-color: color-mix(in srgb, var(--color-paper) 10%, transparent);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  }
+
+  #header.is-scrolled .nav-underline {
+    background-color: currentColor;
+  }
+
+  .theme-icon-moon,
+  :global([data-theme="light"]) .theme-icon-sun {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .theme-icon-moon {
+    display: block;
   }
 </style>

@@ -1,102 +1,78 @@
 ---
 import { siteConfig } from "../config";
+import SectionHeading from "./SectionHeading.astro";
+
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const pad = (n: number) => String(n).padStart(2, "0");
 ---
 
 {
   hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Projects
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+    <section id="projects" class="px-5 py-24 sm:px-8 md:px-12 md:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <SectionHeading index="03" label="what I have made" title="Featured" serif=" works" note="explore my work!" />
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
+        <div class="space-y-5">
+          {siteConfig.projects.map((project, index) => {
+            const Component = project.link ? "a" : "div";
+            const linkProps = project.link
+              ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
+              : {};
 
-                return (
-                  <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                        project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
-                      }`}
-                    >
-                      {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
-                          <svg
-                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 17L17 7M17 7H7M17 7V17"
-                            />
-                          </svg>
-                        </div>
-                      )}
+            return (
+              <Component
+                {...linkProps}
+                data-reveal
+                class="group relative block overflow-hidden rounded-[32px] border border-paper/10 bg-ink-2 p-6 transition-colors duration-500 hover:border-accent/50 sm:p-8 md:p-10"
+              >
+                {/* Big VHS-style index number */}
+                <span
+                  class="pointer-events-none absolute -right-2 -bottom-10 font-serif text-[9rem] leading-none italic text-paper/[0.04] transition-colors duration-500 group-hover:text-accent/15 md:text-[14rem]"
+                  aria-hidden="true"
+                >
+                  {pad(index + 1)}
+                </span>
 
-                      <div class="space-y-4">
-                        <div>
-                          <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        <p
-                          class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14 md:pr-16" : ""}`}
-                        >
-                          {project.description}
-                        </p>
-
-                        {project.skills && project.skills.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                            {project.skills.map((skill) => (
-                              <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </Component>
+                <div class="relative grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
+                  <div class="md:col-span-7">
+                    <div class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                      <span class="text-accent">project {pad(index + 1)}</span>
+                      <span class="h-px w-8 bg-paper/20" />
+                      <span>{project.skills?.[0]}</span>
+                    </div>
+                    <h3 class="mt-4 text-3xl font-semibold leading-[1] tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                      {project.name}
+                    </h3>
                   </div>
-                );
-              })}
-            </div>
-          </div>
+
+                  <div class="flex flex-col gap-6 md:col-span-5">
+                    <p class="text-base leading-relaxed text-paper/60 sm:text-lg">
+                      {project.description}
+                    </p>
+
+                    {project.skills && project.skills.length > 0 && (
+                      <div class="flex flex-wrap gap-2">
+                        {project.skills.map((skill) => (
+                          <span class="rounded-full bg-paper/5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/70">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {project.link && (
+                      <span class="inline-flex w-fit items-center gap-2 rounded-full border border-paper/20 px-5 py-2.5 font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-ink">
+                        View project
+                        <svg class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Component>
+            );
+          })}
         </div>
       </div>
     </section>

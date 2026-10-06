@@ -1,0 +1,38 @@
+---
+import SplitText from "./SplitText.astro";
+
+interface Props {
+  index: string;
+  label: string;
+  title: string;
+  serif: string;
+  note?: string;
+}
+
+const { index, label, title, serif, note } = Astro.props;
+---
+
+<div class="mb-12 md:mb-20" data-reveal>
+  <div
+    class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted"
+  >
+    <span class="text-accent">({index})</span>
+    <span class="h-px w-10 bg-paper/20"></span>
+    <span>{label}</span>
+  </div>
+  <h2
+    class="relative mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-8xl"
+  >
+    <SplitText text={title} class="uppercase" />
+    <span class="font-serif font-normal italic tracking-[-0.02em] text-accent"
+      >{serif}</span
+    >
+    {
+      note && (
+        <span class="absolute -top-6 right-0 hidden rotate-[-6deg] font-hand text-2xl normal-case tracking-normal text-accent-soft md:block lg:text-3xl">
+          {note}
+        </span>
+      )
+    }
+  </h2>
+</div>

@@ -41,7 +41,7 @@ The project follows a component-based architecture with all customization centra
 - The site uses Tailwind CSS v4 with the Vite plugin configuration
 - No linting or testing framework is currently configured
 - All components are in `.astro` format (not React/Vue/etc)
-- The project uses IBM Plex Mono font loaded from Google Fonts
+- Fonts (Google Fonts): Inter (body/display), Instrument Serif italic (accent words), DM Mono (uppercase labels), Just Me Again Down Here (handwritten notes). Theme tokens live in `@theme` in `src/styles/global.css`
 - Social links in the config are all optional and will conditionally render
 
 ## Working with Components
@@ -49,13 +49,13 @@ The project follows a component-based architecture with all customization centra
 When modifying components:
 1. Components read directly from the imported `siteConfig` object
 2. Use Tailwind utility classes for styling
-3. Maintain the existing monospace font aesthetic
+3. Maintain the dark VHS + editorial aesthetic (grain overlay, serif italic accents, mono labels, rounded cards)
 4. Use Tabler Icons for consistency with existing icons
 
 ## Configuration Structure
 
 The `src/config.ts` exports a `siteConfig` object with these sections:
-- Basic info: name, title, description, accentColor
+- Basic info: name, title, location, availability, description, accentColor
 - Social links: email, linkedin, twitter, github (all optional)
 - aboutMe: string
 - skills: string[]
